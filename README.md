@@ -77,4 +77,4 @@ Please review [our security policy](https://github.com/thavarhan/convertible/sec
 
 ## License
 
-Convertible is not open-sourced and the software is privately owned.
+Convertible is open-sourced software licensed under the [MIT license](LICENSE).
