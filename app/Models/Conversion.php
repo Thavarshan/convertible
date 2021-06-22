@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Events\ConversionStatusUpdated;
+use App\Models\Concerns\InteractsWithFiles;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Traits\Tappable;
-use App\Models\Concerns\InteractsWithFiles;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Conversion extends Model
 {

@@ -3,8 +3,8 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Emberfuse\Scorch\Contracts\Actions\DeletesUsers;
+use Illuminate\Support\Facades\DB;
 
 class DeleteUser implements DeletesUsers
 {

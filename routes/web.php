@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConversionController;
 use CloudConvert\Laravel\CloudConvertWebhooksController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect('/login'))->name('welcome');
 

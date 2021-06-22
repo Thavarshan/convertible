@@ -3,10 +3,10 @@
 namespace App\Actions\Conversions;
 
 use App\Models\Conversion;
-use Illuminate\Support\Str;
+use CloudConvert\CloudConvert;
 use CloudConvert\Models\Job;
 use CloudConvert\Models\Task;
-use CloudConvert\CloudConvert;
+use Illuminate\Support\Str;
 
 class ConvertAudio
 {
@@ -76,18 +76,6 @@ class ConvertAudio
     }
 
     /**
-     * Create new job instance.
-     *
-     * @return \App\Actions\Conversions\ConvertAudio
-     */
-    protected function createJob(): ConvertAudio
-    {
-        $this->job = (new Job())->setTag(Str::random());
-
-        return $this;
-    }
-
-    /**
      * Configure task for job.
      *
      * @return \App\Actions\Conversions\ConvertAudio
@@ -116,5 +104,17 @@ class ConvertAudio
     public function createTask(string $process): Task
     {
         return new Task($process, $this->processes[$process]);
+    }
+
+    /**
+     * Create new job instance.
+     *
+     * @return \App\Actions\Conversions\ConvertAudio
+     */
+    protected function createJob(): ConvertAudio
+    {
+        $this->job = (new Job())->setTag(Str::random());
+
+        return $this;
     }
 }

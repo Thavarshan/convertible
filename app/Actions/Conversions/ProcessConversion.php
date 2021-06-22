@@ -2,9 +2,9 @@
 
 namespace App\Actions\Conversions;
 
-use Illuminate\Support\Facades\DB;
 use App\Jobs\ProcessAudioConversion;
 use Emberfuse\Scorch\Contracts\Actions\CreatesNewResources;
+use Illuminate\Support\Facades\DB;
 
 class ProcessConversion implements CreatesNewResources
 {

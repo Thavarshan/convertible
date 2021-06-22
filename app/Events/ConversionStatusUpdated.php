@@ -2,11 +2,11 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use App\Models\Conversion;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
+use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class ConversionStatusUpdated
 {

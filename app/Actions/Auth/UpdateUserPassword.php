@@ -2,8 +2,8 @@
 
 namespace App\Actions\Auth;
 
-use App\Models\User;
 use App\Actions\Auth\Traits\PasswordUpdater;
+use App\Models\User;
 use Emberfuse\Scorch\Contracts\Actions\UpdatesUserPasswords;
 
 class UpdateUserPassword implements UpdatesUserPasswords

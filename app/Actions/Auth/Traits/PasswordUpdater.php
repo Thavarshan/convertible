@@ -2,10 +2,10 @@
 
 namespace App\Actions\Auth\Traits;
 
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Str;
 
 trait PasswordUpdater
 {

@@ -2,9 +2,9 @@
 
 namespace App\Actions\Auth;
 
-use Illuminate\Http\Request;
-use Emberfuse\Scorch\Scorch\Config;
 use Emberfuse\Scorch\Contracts\Actions\AuthenticatesUsers;
+use Emberfuse\Scorch\Scorch\Config;
+use Illuminate\Http\Request;
 
 class AuthenticateUser extends AuthAction implements AuthenticatesUsers
 {

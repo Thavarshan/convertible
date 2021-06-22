@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Conversion;
-use Illuminate\Http\Response;
+use App\Actions\Conversions\ProcessConversion;
 use App\Http\Requests\ConversionRequest;
 use App\Http\Responses\ConversionResponse;
-use App\Actions\Conversions\ProcessConversion;
+use App\Models\Conversion;
+use Illuminate\Http\Response;
+use Inertia\Inertia;
 
 class ConversionController extends Controller
 {
@@ -52,6 +52,7 @@ class ConversionController extends Controller
     {
         return Response::download(
             $conversion->download,
-            $conversion->audio_file_name);
+            $conversion->audio_file_name
+        );
     }
 }

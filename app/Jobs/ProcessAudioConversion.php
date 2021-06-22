@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
-use Throwable;
+use App\Actions\Conversions\ConvertAudio;
 use App\Models\Conversion;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use App\Actions\Conversions\ConvertAudio;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Throwable;
 
 class ProcessAudioConversion implements ShouldQueue
 {

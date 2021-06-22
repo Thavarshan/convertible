@@ -2,9 +2,9 @@
 
 namespace App\Actions\Auth;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Session\Session;
 use Emberfuse\Scorch\Contracts\Actions\LogsoutUsers;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 
 class LogoutUser extends AuthAction implements LogsoutUsers
 {

@@ -3,8 +3,8 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Emberfuse\Scorch\Contracts\Actions\UpdatesUserProfiles;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class UpdateUserProfile implements UpdatesUserProfiles
 {

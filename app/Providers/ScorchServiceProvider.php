@@ -2,22 +2,22 @@
 
 namespace App\Providers;
 
+use App\Actions\Auth\AuthenticateUser;
+use App\Actions\Auth\CreateNewUser;
 use App\Actions\Auth\DeleteUser;
 use App\Actions\Auth\LogoutUser;
-use App\Actions\Auth\CreateNewUser;
-use App\Actions\Auth\AuthenticateUser;
 use App\Actions\Auth\ResetUserPassword;
-use App\Actions\Auth\UpdateUserProfile;
-use Illuminate\Support\ServiceProvider;
 use App\Actions\Auth\UpdateUserPassword;
-use Emberfuse\Scorch\Providers\Traits\HasActions;
+use App\Actions\Auth\UpdateUserProfile;
+use Emberfuse\Scorch\Contracts\Actions\AuthenticatesUsers;
+use Emberfuse\Scorch\Contracts\Actions\CreatesNewUsers;
 use Emberfuse\Scorch\Contracts\Actions\DeletesUsers;
 use Emberfuse\Scorch\Contracts\Actions\LogsoutUsers;
-use Emberfuse\Scorch\Contracts\Actions\CreatesNewUsers;
-use Emberfuse\Scorch\Contracts\Actions\AuthenticatesUsers;
 use Emberfuse\Scorch\Contracts\Actions\ResetsUserPasswords;
-use Emberfuse\Scorch\Contracts\Actions\UpdatesUserProfiles;
 use Emberfuse\Scorch\Contracts\Actions\UpdatesUserPasswords;
+use Emberfuse\Scorch\Contracts\Actions\UpdatesUserProfiles;
+use Emberfuse\Scorch\Providers\Traits\HasActions;
+use Illuminate\Support\ServiceProvider;
 
 class ScorchServiceProvider extends ServiceProvider
 {

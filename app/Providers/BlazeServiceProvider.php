@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Actions\API\UpdateApiToken;
 use App\Actions\API\CreateNewApiToken;
-use Illuminate\Support\ServiceProvider;
+use App\Actions\API\UpdateApiToken;
 use Emberfuse\Blaze\API\Permission;
-use Emberfuse\Scorch\Providers\Traits\HasActions;
-use Emberfuse\Blaze\Contracts\Actions\UpdatesApiTokens;
 use Emberfuse\Blaze\Contracts\Actions\CreatesNewApiTokens;
+use Emberfuse\Blaze\Contracts\Actions\UpdatesApiTokens;
+use Emberfuse\Scorch\Providers\Traits\HasActions;
+use Illuminate\Support\ServiceProvider;
 
 class BlazeServiceProvider extends ServiceProvider
 {

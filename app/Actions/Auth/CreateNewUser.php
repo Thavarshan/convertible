@@ -3,11 +3,11 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
+use Emberfuse\Scorch\Contracts\Actions\CreatesNewUsers;
+use Emberfuse\Scorch\Support\Traits\Fillable;
+use Emberfuse\Scorch\Support\Util;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Emberfuse\Scorch\Support\Util;
-use Emberfuse\Scorch\Support\Traits\Fillable;
-use Emberfuse\Scorch\Contracts\Actions\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
