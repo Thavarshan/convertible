@@ -49,6 +49,8 @@ class ProcessAudioConversion implements ShouldQueue
         try {
             $converter->process($this->conversion);
         } catch (Throwable $e) {
+            $this->conversion->updateStatus('failed');
+
             if (config('app.env') === 'local') {
                 throw $e;
             }
