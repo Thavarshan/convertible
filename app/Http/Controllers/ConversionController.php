@@ -6,9 +6,9 @@ use Inertia\Inertia;
 use App\Models\Conversion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Jobs\InitiateConversion;
 use App\Http\Requests\ConversionRequest;
 use App\Http\Responses\ConversionResponse;
+use App\Actions\Conversions\ProcessConversion;
 
 class ConversionController extends Controller
 {
@@ -27,13 +27,16 @@ class ConversionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\ConversionRequest $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ConversionRequest $request)
+    public function store(ConversionRequest $request, ProcessConversion $converter)
     {
-        InitiateConversion::dispatch($request->validated());
+        $converter->convert(
+            $request->validated(),
+            ['user' => $request->user()]
+        );
 
         return ConversionResponse::dispatch();
     }
@@ -49,8 +52,7 @@ class ConversionController extends Controller
     {
         return Response::download(
             $conversion->download,
-            $conversion->audio_file_name
-        );
+            $conversion->audio_file_name);
     }
 
     /**
