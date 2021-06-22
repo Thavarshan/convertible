@@ -17,7 +17,12 @@ jobs:
           MYSQL_DATABASE: convertible
         ports:
           - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     strategy:
       fail-fast: true
       matrix:
@@ -87,12 +92,18 @@ jobs:
           DB_USERNAME: root
         run: php artisan test --parallel
 
-      - name: 📚 Upload artifacts
-        uses: actions/upload-artifact@master
-        if: failure()
-        with:
-          name: Logs
-          path: ./storage/logs
+      - name: Execute Code Sniffer via phpcs
+	      run: |
+	        composer require --dev squizlabs/php_codesniffer
+	        vendor/bin/phpcs --standard=PSR12 app
+
+	    - name: Execute Code Static Analysis (PSALM)
+	      run: |
+	        composer require --dev vimeo/psalm
+	        ./vendor/bin/psalm --init
+	        composer require --dev psalm/plugin-laravel
+	        ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
+	        vendor/bin/psalm
 
   windows_tests:
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }} - Windows
@@ -101,7 +112,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.4, 8.0]
+        php: [8.0]
         stability: [prefer-stable]
 
     steps:
@@ -158,9 +169,15 @@ jobs:
           DB_DATABASE: ':memory:'
         run: php artisan test --parallel
 
-      - name: 📚 Upload artifacts
-        uses: actions/upload-artifact@master
-        if: failure()
-        with:
-          name: Logs
-          path: ./storage/logs
+      - name: Execute Code Sniffer via phpcs
+	      run: |
+	        composer require --dev squizlabs/php_codesniffer
+	        vendor/bin/phpcs --standard=PSR12 app
+
+	    - name: Execute Code Static Analysis (PSALM)
+	      run: |
+	        composer require --dev vimeo/psalm
+	        ./vendor/bin/psalm --init
+	        composer require --dev psalm/plugin-laravel
+	        ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
+	        vendor/bin/psalm
