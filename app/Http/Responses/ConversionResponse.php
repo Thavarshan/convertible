@@ -12,7 +12,9 @@ class ConversionResponse extends Response implements Responsable
      *
      * @var string
      */
-    protected $message = 'Conversion process underway, you will receive an email once the conversion process is completed.';
+    protected $message = 'Conversion process underway,
+        you will receive an email once the
+        conversion process is completed.';
 
     /**
      * Create an HTTP response that represents the object.
