@@ -6,9 +6,9 @@ use Inertia\Inertia;
 use App\Models\Conversion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Jobs\InitiateConversion;
 use App\Http\Requests\ConversionRequest;
 use App\Http\Responses\ConversionResponse;
-use App\Actions\Conversions\ProcessConversion;
 
 class ConversionController extends Controller
 {
@@ -27,15 +27,13 @@ class ConversionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\ConversionRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ConversionRequest $request, ProcessConversion $converter)
+    public function store(ConversionRequest $request)
     {
-        dispatch(fn () => $converter->convert(
-            $request->validated(), ['user' => $request->user()]
-        ));
+        InitiateConversion::dispatch($request->validated());
 
         return ConversionResponse::dispatch();
     }
