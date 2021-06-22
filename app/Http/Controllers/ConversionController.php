@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Conversion;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\ConversionRequest;
 use App\Http\Responses\ConversionResponse;
@@ -15,7 +14,7 @@ class ConversionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
@@ -27,7 +26,8 @@ class ConversionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\ConversionRequest       $request
+     * @param \App\Actions\Conversions\ProcessConversion $converter
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,28 +53,5 @@ class ConversionController extends Controller
         return Response::download(
             $conversion->download,
             $conversion->audio_file_name);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Conversion   $conversion
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Conversion $conversion)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Conversion $conversion
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Conversion $conversion)
-    {
     }
 }
