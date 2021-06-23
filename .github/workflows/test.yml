@@ -1,14 +1,16 @@
-name: Tests
+name: Test
 
 on:
   push:
     branches:
       - main
       - development
+      - feature/**
   pull_request:
     branches:
       - main
       - development
+      - feature/**
 
 jobs:
   tests:
@@ -21,7 +23,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE:  convertible
+          MYSQL_DATABASE:  laravel
         ## map the "external" 33306 port with the "internal" 3306
         ports:
           - 33306:3306
@@ -34,11 +36,10 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
         php-versions: ['8.0']
         dependency-stability: [prefer-stable]
 
-    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+    name: PHP ${{ matrix.php-versions }} - ${{ matrix.dependency-stability }}
 
     steps:
     - uses: actions/checkout@v2
@@ -114,25 +115,11 @@ jobs:
     - name: PHP Version
       run: php --version
 
-    # Code quality
     - name: Execute tests (Unit and Feature tests) via PHPUnit
     # Set environment
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: convertible
+        DB_DATABASE: laravel
         DB_PORT: 33306
         DB_USER: root
       run: vendor/bin/phpunit --testdox
-
-    - name: Execute Code Sniffer via phpcs
-      run: |
-        composer require --dev squizlabs/php_codesniffer
-        vendor/bin/phpcs --standard=PSR12 app
-
-    - name: Execute Code Static Analysis (PSALM)
-      run: |
-        composer require --dev vimeo/psalm
-        ./vendor/bin/psalm --init
-        composer require --dev psalm/plugin-laravel
-        ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
-        vendor/bin/psalm
